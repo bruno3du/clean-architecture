@@ -18,7 +18,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     });
   }
   async findOne(id: string): Promise<Customer> {
-    const customer = await CustomerModel.findByPk(id).catch(() => null);
+    const customer = await CustomerModel.findByPk(id).catch(() => undefined as any);
 
     if (!customer) {
       throw new Error("Customer not found");
