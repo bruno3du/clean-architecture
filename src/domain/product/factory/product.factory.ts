@@ -8,7 +8,7 @@ export default class ProductFactory {
     name,
     price,
   }: {
-    type: string;
+    type: "a" | "b";
     name: string;
     price: number;
   }): ProductInterface {
