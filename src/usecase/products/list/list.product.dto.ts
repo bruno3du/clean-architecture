@@ -1,7 +1,7 @@
+import { ProductType } from "../../../domain/product/enum/product.type.enum";
+
 export interface InputListProductDto {
-    name?: string;
-    price?: number;
-    stock?: number;
+    type: ProductType
 }
 
 export interface OutputListProductDto {

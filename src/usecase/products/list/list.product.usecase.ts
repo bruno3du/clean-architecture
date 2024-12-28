@@ -5,7 +5,9 @@ export class ListProductUsecase {
     constructor(private readonly productRepository: ProductRepositoryInterface) { }
 
     async execute(input: InputListProductDto): Promise<OutputListProductDto> {
-        const products = await this.productRepository.findAll();
+        const products = await this.productRepository.findAll({
+            type: input.type,
+        });
         return {
             products: products.map(product => ({
                 id: product.id,

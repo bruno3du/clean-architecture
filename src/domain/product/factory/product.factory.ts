@@ -1,21 +1,23 @@
 import { v4 as uuid } from "uuid";
-import ProductA from "../entity/product-a.entity";
 import ProductB from "../entity/product-b.entity";
+import Product from "../entity/product.entity";
 import { ProductInterface } from "../entity/product.interface";
+import { ProductType } from "../enum/product.type.enum";
+
 export default class ProductFactory {
   static create({
     type,
     name,
     price,
   }: {
-    type: "a" | "b";
+    type: ProductType;
     name: string;
     price: number;
   }): ProductInterface {
     switch (type) {
-      case "a":
-        return new ProductA({ id: uuid(), name, price });
-      case "b":
+      case ProductType.A:
+        return new Product({ id: uuid(), name, price });
+      case ProductType.B:
         return new ProductB({ id: uuid(), name, price });
       default:
         throw new Error("Invalid product type");

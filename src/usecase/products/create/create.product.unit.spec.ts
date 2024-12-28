@@ -1,3 +1,4 @@
+import { ProductType } from "../../../domain/product/enum/product.type.enum";
 import { CreateProductUseCase } from "./create.product.usecase";
 
 const MockProductRespository = () => {
@@ -14,7 +15,7 @@ describe("Test create product use case", () => {
         const productRepository = MockProductRespository();
         const usecase = new CreateProductUseCase(productRepository);
         const input = {
-            type: "b" as const,
+            type: ProductType.B,
             name: "Product 1",
             price: 100,
         };
@@ -32,7 +33,7 @@ describe("Test create product use case", () => {
         const productRepository = MockProductRespository();
         const usecase = new CreateProductUseCase(productRepository);
         const input = {
-            type: "a" as const,
+            type: ProductType.A,
             name: "Product 1",
             price: 100,
         };
@@ -64,7 +65,7 @@ describe("Test create product use case", () => {
         const productRepository = MockProductRespository();
         const usecase = new CreateProductUseCase(productRepository);
         const input = {
-            type: "a" as const,
+            type: ProductType.A,
             name: "",
             price: 100,
         };

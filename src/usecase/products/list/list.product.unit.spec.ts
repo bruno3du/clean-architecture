@@ -1,3 +1,4 @@
+import { ProductType } from "../../../domain/product/enum/product.type.enum";
 import { InputListProductDto, OutputListProductDto } from "./list.product.dto";
 import { ListProductUsecase } from "./list.product.usecase";
 
@@ -16,10 +17,30 @@ const MockProductRepository = () => {
 
 
 describe("List product use case unit tests", () => {
-    it("should list all products", async () => {
+    it("should list all products type a", async () => {
         const productRepository = MockProductRepository();
         const usecase = new ListProductUsecase(productRepository);
-        const input: InputListProductDto = {};
+        const input: InputListProductDto = {
+            type: ProductType.A
+        };
+
+        const output: OutputListProductDto = await usecase.execute(input);
+
+        expect(output.products.length).toBe(2);
+        expect(output.products[0].id).toBe("1");
+        expect(output.products[0].name).toBe("Product 1");
+        expect(output.products[0].price).toBe(100);
+        expect(output.products[1].id).toBe("2");
+        expect(output.products[1].name).toBe("Product 2");
+        expect(output.products[1].price).toBe(200);
+    });
+
+    it("should list all products type b", async () => {
+        const productRepository = MockProductRepository();
+        const usecase = new ListProductUsecase(productRepository);
+        const input: InputListProductDto = {
+            type: ProductType.B
+        };
 
         const output: OutputListProductDto = await usecase.execute(input);
 
@@ -33,6 +54,4 @@ describe("List product use case unit tests", () => {
     });
 
 });
-
-
 

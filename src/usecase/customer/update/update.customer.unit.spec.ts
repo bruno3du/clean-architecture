@@ -89,4 +89,13 @@ describe("Test update customer use case", () => {
             address: undefined,
         })).rejects.toThrow("Address is required");
     })
+
+    it("should throw an error when customer does not exist", async () => {
+        const customerRepository = CustomerMockRepository();
+        customerRepository.findOne = jest.fn().mockRejectedValue(new Error("Customer not found"));
+        const usecase = new UpdateCustomerUsecase(customerRepository);
+        input.id = "10"
+
+        await expect(usecase.execute(input)).rejects.toThrow("Customer not found");
+    })
 })

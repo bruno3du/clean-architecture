@@ -1,12 +1,13 @@
 import { ProductType } from "../../../domain/product/enum/product.type.enum";
 
-export interface InputCreateProductDto {
+export interface InputUpdateProductDto {
     type: ProductType;
-    name: string;
-    price: number;
+    id: string;
+    name?: string;
+    price?: number;
 }
 
-export interface OutputCreateProductDto {
+export interface OutputUpdateProductDto {
     id: string;
     name: string;
     price: number;

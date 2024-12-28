@@ -12,6 +12,8 @@ export class CreateProductUseCase {
             price: input.price,
         });
 
+
+
         await this.productRepository.create(product);
 
         return {

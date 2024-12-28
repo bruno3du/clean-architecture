@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import Product from "../../../domain/product/entity/product-b.entity";
+import ProductB from "../../../domain/product/entity/product-b.entity";
 import ProductModel from "../sequelize/model/product.model";
 import ProductRepository from "./product.repository";
 
@@ -31,7 +31,7 @@ describe("Product repository tests", () => {
 
   it("should create a product", async () => {
     const productRepository = new ProductRepository();
-    const product = new Product({
+    const product = new ProductB({
       id: "1",
       name: "Product 1",
       price: 100,
@@ -47,7 +47,7 @@ describe("Product repository tests", () => {
 
   it("should update a product", async () => {
     const productRepository = new ProductRepository();
-    const product = new Product({
+    const product = new ProductB({
       id: "1",
       name: "Product 1",
       price: 100,
@@ -73,7 +73,7 @@ describe("Product repository tests", () => {
 
   it("should find a product", async () => {
     const productRepository = new ProductRepository();
-    const product = new Product({
+    const product = new ProductB({
       id: "1",
       name: "Product 1",
       price: 100,
@@ -89,12 +89,12 @@ describe("Product repository tests", () => {
 
   it("should find all products", async () => {
     const productRepository = new ProductRepository();
-    const product1 = new Product({
+    const product1 = new ProductB({
       id: "1",
       name: "Product 1",
       price: 100,
     });
-    const product2 = new Product({
+    const product2 = new ProductB({
       id: "2",
       name: "Product 2",
       price: 200,
@@ -102,7 +102,9 @@ describe("Product repository tests", () => {
     await productRepository.create(product1);
     await productRepository.create(product2);
 
-    const products = await productRepository.findAll();
+    const products = await productRepository.findAll(
+      { type: "a" }
+    );
 
     expect(products.length).toBe(2);
     expect(products[0].id).toBe("1");

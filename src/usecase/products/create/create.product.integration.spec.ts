@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
+import { ProductType } from "../../../domain/product/enum/product.type.enum";
 import ProductRepository from "../../../infrastructure/product/repository/product.repository";
 import ProductModel from "../../../infrastructure/product/sequelize/model/product.model";
 import { InputCreateProductDto, OutputCreateProductDto } from "./create.product.dto";
@@ -26,7 +27,7 @@ describe("Create product use case integration tests", () => {
         const productRepository = new ProductRepository();
         const createProductUseCase = new CreateProductUseCase(productRepository);
         const input: InputCreateProductDto = {
-            type: "b",
+            type: ProductType.B,
             name: "Product 1",
             price: 100,
         };
@@ -50,7 +51,7 @@ describe("Create product use case integration tests", () => {
         const productRepository = new ProductRepository();
         const createProductUseCase = new CreateProductUseCase(productRepository);
         const input: InputCreateProductDto = {
-            type: "a",
+            type: ProductType.A,
             name: "Product 1",
             price: 100,
         };
@@ -92,7 +93,7 @@ describe("Create product use case integration tests", () => {
         const productRepository = new ProductRepository();
         const createProductUseCase = new CreateProductUseCase(productRepository);
         const input = {
-            type: "b" as const,
+            type: ProductType.B,
             name: "",
             price: 100,
         };

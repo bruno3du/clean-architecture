@@ -6,7 +6,7 @@ type ProductProps = {
   price: number;
 };
 
-export default class ProductA implements ProductInterface {
+export default class Product implements ProductInterface {
   private _id: string;
   private _name: string;
   private _price: number;
