@@ -1,3 +1,5 @@
+import Entity from "../../@shared/entity/entity.abstract";
+import NotificationError from "../../@shared/notification/notification.error";
 import Address from "../value-object/address";
 
 interface CustomerProps {
@@ -6,14 +8,14 @@ interface CustomerProps {
   address: Address;
 }
 
-export default class Customer {
-  private _id: string;
+export default class Customer extends Entity {
   private _name: string;
   private _address: Address;
   private _active = false;
   private _rewardPoints = 0;
 
   constructor(props: CustomerProps) {
+    super();
     this._id = props.id;
     this._name = props.name;
     this._address = props.address;
@@ -22,22 +24,29 @@ export default class Customer {
   }
 
   validate() {
-    if (this._id.length === 0) {
-      throw new Error("Id is required");
-    }
-    if (this._name.length === 0) {
-      throw new Error("Name is required");
+    if (!this.id) {
+      this.notification.addError({
+        message: "Id is required",
+        context: "customer"
+      })
     }
 
+    if (!this._name) {
+      this.notification.addError({
+        message: "Name is required",
+        context: "customer"
+      })
+    }
+
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.errors)
+    }
   }
 
   changeAddress(address: Address) {
     this._address = address;
   }
 
-  get id(): string {
-    return this._id;
-  }
   get name(): string {
     return this._name;
   }

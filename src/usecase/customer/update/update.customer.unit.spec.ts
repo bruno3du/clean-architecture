@@ -11,7 +11,7 @@ const customer = CustomersFactory.create({
         zipCode: "123456",
         city: "city",
         state: "state",
-    },)
+    })
 })
 
 const input = {

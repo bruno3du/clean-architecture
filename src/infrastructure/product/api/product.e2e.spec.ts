@@ -2,7 +2,6 @@ import request from "supertest";
 import { app, sequelize } from "../../api/express";
 
 describe("E2E: Product", () => {
-
     beforeEach(async () => {
         await sequelize.sync({ force: true });
     });
@@ -63,7 +62,7 @@ describe("E2E: Product", () => {
         };
 
         const updateResponse = await request(app).put(`/product/${productId}`).send(updatedProduct);
-        
+
         expect(updateResponse.status).toBe(200);
         expect(updateResponse.body).toEqual({
             id: productId,

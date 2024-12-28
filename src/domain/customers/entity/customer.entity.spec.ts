@@ -9,7 +9,7 @@ import Customer from "./customer.entity";
 describe("Customer entity unit tests", () => {
   it("should throw error when id is empty", () => {
     expect(() => {
-      let customer = new Customer({
+      new Customer({
         id: "",
         name: "John Doe",
         address: new Address({
@@ -20,12 +20,12 @@ describe("Customer entity unit tests", () => {
           state: "State",
         }),
       });
-    }).toThrowError("Id is required");
+    }).toThrow("Id is required");
   });
 
   it("should throw error when name is empty", () => {
     expect(() => {
-      let customer = new Customer({
+      new Customer({
         id: "1",
         name: "",
         address: new Address({

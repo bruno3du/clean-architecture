@@ -98,7 +98,7 @@ describe("Create product use case integration tests", () => {
             price: 100,
         };
 
-        await expect(createProductUseCase.execute(input)).rejects.toThrow("Name is required");
+        await expect(createProductUseCase.execute(input)).rejects.toThrow("product: Name is required");
 
         const productModel = await ProductModel.findOne({ where: { price: 100 } });
 
