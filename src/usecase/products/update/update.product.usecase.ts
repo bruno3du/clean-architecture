@@ -9,19 +9,19 @@ class UpdateProductUseCase {
     async execute(input: InputUpdateProductDto): Promise<OutputUpdateProductDto> {
         const foundProduct = await this.productRepository.findOne(input.id);
 
+
         if (!foundProduct) {
             throw new Error("Product not found");
         }
 
         let product: Product | ProductB
 
-        if (input.type === "a") {
-            product = new Product(foundProduct);
-        }
+
         if (input.type === "b") {
             product = new ProductB(foundProduct);
+        } else {
+            product = new Product(foundProduct);
         }
-
 
 
         if (input.name) {

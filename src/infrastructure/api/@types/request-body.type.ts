@@ -1,3 +1,3 @@
 import { Request } from "express";
 
-export type RequestBody<T> = Request<{}, {}, T>
+export type RequestBody<TReqBody, TReqParams = {}> = Request<TReqParams, {}, TReqBody>

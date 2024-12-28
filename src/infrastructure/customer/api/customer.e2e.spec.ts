@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app, sequelize } from "../express";
+import { app, sequelize } from "../../api/express";
 describe("E2E: Customer", () => {
 
     beforeEach(async () => {

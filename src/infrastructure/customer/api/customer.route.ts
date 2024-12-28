@@ -3,8 +3,9 @@ import { InputCreateCustomerDto } from "../../../usecase/customer/create/create.
 import CreateCustomerUseCase from "../../../usecase/customer/create/create.customer.usecase";
 import { InputListCustomerDto } from "../../../usecase/customer/list/list.customer.dto";
 import { ListCustomerUsecase } from "../../../usecase/customer/list/list.customer.usecase";
-import CustomerRepository from "../../customer/repository/customer.repository";
-import { RequestBody } from "../@types/request-body.type";
+import { RequestBody } from "../../api/@types/request-body.type";
+import CustomerRepository from "../repository/customer.repository";
+
 
 export const customerRoute = Router();
 
