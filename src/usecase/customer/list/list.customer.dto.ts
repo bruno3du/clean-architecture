@@ -1,5 +1,4 @@
 export interface InputListCustomerDto {
-
 }
 
 export interface OutputListCustomerDto {

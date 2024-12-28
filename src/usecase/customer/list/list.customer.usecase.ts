@@ -4,7 +4,7 @@ import { InputListCustomerDto, OutputListCustomerDto } from "./list.customer.dto
 export class ListCustomerUsecase {
     constructor(private readonly customerRepository: CustomerRepositoryInterface) { }
 
-    async execute(input: InputListCustomerDto): Promise<OutputListCustomerDto> {
+    async execute(input?: InputListCustomerDto): Promise<OutputListCustomerDto> {
         const customers = await this.customerRepository.findAll();
         return {
             customers: customers.map(customer => ({
