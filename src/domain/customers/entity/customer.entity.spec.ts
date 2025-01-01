@@ -36,7 +36,23 @@ describe("Customer entity unit tests", () => {
           state: "State",
         }),
       });
-    }).toThrowError("Name is required");
+    }).toThrowError("customer: Name is required");
+  });
+
+  it("should throw error when name and id are empty", () => {
+    expect(() => {
+      new Customer({
+        id: "",
+        name: "",
+        address: new Address({
+          street: "Street",
+          number: 123,
+          zipCode: "12345",
+          city: "City",
+          state: "State",
+        }),
+      });
+    }).toThrowError("customer: Id is required, customer: Name is required");
   });
 
   it("should change name", () => {
@@ -86,7 +102,7 @@ describe("Customer entity unit tests", () => {
         address: undefined,
       });
       customer.activate();
-    }).toThrowError("Address is mandatory to activate a customer");
+    }).toThrowError("customer: Address is mandatory to activate a customer");
   });
 
   it("should deactivate customer", () => {

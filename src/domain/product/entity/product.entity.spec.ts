@@ -34,6 +34,16 @@ describe("Product entity unit tests", () => {
     }).toThrowError("Price must be greater than 0");
   });
 
+  it("should throw error when id and name are empty and price is less than 0", () => {
+    expect(() => {
+      new Product({
+        id: "",
+        name: "",
+        price: -1,
+      });
+    }).toThrowError("product: Id is required, product: Name is required, product: Price must be greater than 0");
+  });
+
   it("should change name", () => {
     let product = new Product({
       id: "1",
