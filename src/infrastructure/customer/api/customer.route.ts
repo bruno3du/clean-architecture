@@ -5,6 +5,7 @@ import { InputListCustomerDto } from "../../../usecase/customer/list/list.custom
 import { ListCustomerUsecase } from "../../../usecase/customer/list/list.customer.usecase";
 import { RequestBody } from "../../api/@types/request-body.type";
 import CustomerRepository from "../repository/customer.repository";
+import CustomerPresenter from "./presenters/customer.presenter";
 
 
 export const customerRoute = Router();
@@ -13,7 +14,16 @@ customerRoute.get("/", async (req: RequestBody<InputListCustomerDto>, res: Respo
     const usecase = new ListCustomerUsecase(new CustomerRepository());
     try {
         const output = await usecase.execute();
-        res.status(200).json(output);
+        res.format({
+            json: async () => {
+                res.status(200).json(output);
+            },
+            xml: async () => {
+                res.header("Content-Type", "application/xml");
+                res.set("Content-Type", "application/xml");
+                res.status(200).send(CustomerPresenter.toXML(output));
+            },
+        })
     } catch (err) {
         res.status(500).send(err);
     }
