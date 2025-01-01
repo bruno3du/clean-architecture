@@ -1,3 +1,5 @@
+import { AddressValidatorFactory } from "../factory/address.validator.factory";
+
 type AddressProps = {
   street: string;
   number: number;
@@ -24,25 +26,7 @@ export default class Address {
   }
 
   validate() {
-    if (!this._street) {
-      throw new Error("Street is required");
-    }
-
-    if (!this._number) {
-      throw new Error("Number is required");
-    }
-
-    if (!this._zipCode) {
-      throw new Error("Zip Code is required");
-    }
-
-    if (!this._city) {
-      throw new Error("City is required");
-    }
-
-    if (!this._state) {
-      throw new Error("State is required");
-    }
+    AddressValidatorFactory.create().validate(this);
   }
 
   get street() {
